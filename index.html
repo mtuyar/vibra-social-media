@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
+    <!-- Mobile App Capable Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Vibra" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>Vibra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              vibra: {
+                bg: '#000000',
+                glass: 'rgba(255, 255, 255, 0.08)',
+                // These will be overridden by CSS variables
+                neon: 'var(--color-primary)', 
+                laser: 'var(--color-secondary)',
+                void: '#121212',
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['Fira Code', 'monospace'],
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'scan': 'scan 4s linear infinite',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'spin-slow': 'spin 8s linear infinite',
+              'spin-reverse': 'spin 12s linear infinite reverse',
+              'marquee': 'marquee 15s linear infinite',
+              'glitch': 'glitch 1s linear infinite',
+              'equalizer': 'equalizer 1s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              },
+              scan: {
+                '0%': { transform: 'rotate(0deg)' },
+                '100%': { transform: 'rotate(360deg)' },
+              },
+              glow: {
+                'from': { boxShadow: '0 0 10px var(--color-primary)', borderColor: 'var(--color-primary)' },
+                'to': { boxShadow: '0 0 20px var(--color-secondary)', borderColor: 'var(--color-secondary)' },
+              },
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-100%)' },
+              },
+              glitch: {
+                '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
+                '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
+                '62%': { transform: 'translate(0,0) skew(5deg)' },
+              },
+              equalizer: {
+                '0%, 100%': { height: '10%' },
+                '50%': { height: '100%' }
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Fira+Code:wght@400&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --color-primary: #b9fbc0; /* Default Neon Green */
+        --color-secondary: #d60270; /* Default Laser Pink */
+      }
+
+      html, body {
+        height: 100%;
+        overflow: hidden;
+        background-color: #000000;
+        color: white;
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+      .glass-morphism {
+        background: rgba(20, 20, 20, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      }
+      
+      /* Advanced Glitch Effect Classes */
+      .glitch-text {
+        position: relative;
+      }
+      .glitch-text::before,
+      .glitch-text::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .glitch-text::before {
+        left: 2px;
+        text-shadow: -1px 0 #ff00c1;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim 5s infinite linear alternate-reverse;
+      }
+      .glitch-text::after {
+        left: -2px;
+        text-shadow: -1px 0 #00fff9;
+        clip: rect(44px, 450px, 56px, 0);
+        animation: glitch-anim2 5s infinite linear alternate-reverse;
+      }
+      
+      @keyframes glitch-anim {
+        0% { clip: rect(32px, 9999px, 11px, 0); }
+        20% { clip: rect(68px, 9999px, 89px, 0); }
+        40% { clip: rect(15px, 9999px, 48px, 0); }
+        60% { clip: rect(82px, 9999px, 4px, 0); }
+        80% { clip: rect(54px, 9999px, 26px, 0); }
+        100% { clip: rect(9px, 9999px, 66px, 0); }
+      }
+      @keyframes glitch-anim2 {
+        0% { clip: rect(61px, 9999px, 5px, 0); }
+        20% { clip: rect(89px, 9999px, 24px, 0); }
+        40% { clip: rect(6px, 9999px, 84px, 0); }
+        60% { clip: rect(33px, 9999px, 12px, 0); }
+        80% { clip: rect(18px, 9999px, 63px, 0); }
+        100% { clip: rect(45px, 9999px, 91px, 0); }
+      }
+
+      .snap-container {
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        height: 100vh;
+        scroll-behavior: smooth;
+      }
+      .snap-child {
+        scroll-snap-align: start;
+        height: 100vh;
+        width: 100%;
+      }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "vite": "https://esm.sh/vite@^7.3.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+  }
+}
+</script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
